@@ -11,54 +11,51 @@
 <div id="content" class="container"></div>
 <script type="text/jsx">
 	var test = {
-		name: "Sample Test",
-		description: "This is a sample test paper to demonstrate the ReactJS UI design by components.",
-		passCutoff: 0.33,		
+		name: "Minecraft Test",
+		description: "This is a Minecraft test, you will be timed",
+		passCutoff: 0.33,
 		applyNegativeMarking: false,
-		time: 1,
+		time: 60,
 		questions: [
 			{
 			no: "1",
-			qtext:"California is in which part of USA?",
+			qtext:"How tall is a enderman?",
 			options:[
-				{text:"East"},
-				{text:"Mid"},
-				{text:"West"},
-				{text:"South"}
+				{text:"Three"},
+				{text:"Five"},
+				{text:"Four"},
+				{text:"Eight"}
 			],
-			ans:"West",
+			ans:"Four",
 			marks: 3
 		},
 		{
 			no: "2",
-			qtext:"Who is Prime Minister of India?",
+			qtext:"How many blocks is a nether portal?",
 			options:[
-				{text:"Sonia Gandhi"},
-				{text:"Narendra Modi"},
-				{text:"Manmohan Singh"},
-				{text:"Rahul Gandhi"}
+				{text:"15"},
+				{text:"14"},
+				{text:"10"}
 			],
-			ans:"Narendra Modi",
+			ans:"10",
 			marks: 2
 		},
 		{
 			no: "3",
-			qtext:"Which of the following is most popular Search Engine Company?",
+			qtext:"What is the main character's name?",
 			options:[
-				{text:"Microsoft"},
-				{text:"Facebook"},
-				{text:"Google"},
-				{text:"Yahoo"}
+				{text:"Bob"},
+				{text:"Joe"},
+				{text:"Steve"},
+				{text:"Linda"}
 			],
-			ans:"Google",
+			ans:"Steve",
 			marks: 1
 		},
 		]
-	};	
-	
+	};
+
 	React.render( <Test details={test}/>, document.getElementById( "content" ) );
 </script>
 </body>
 </html>
-
-

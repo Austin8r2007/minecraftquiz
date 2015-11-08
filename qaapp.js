@@ -7,16 +7,16 @@ var QuestionPaper = React.createClass({
 		},
 		handleSubmitted: function(event) {
 			var result = {totalscore: this.state.totalscore};
-			this.props.onSubmitted( result );			
+			this.props.onSubmitted( result );
 			clearInterval(this.interval);
 		},
 		tick: function() {
       if( this.state.timeElapsed > 0 ) {
-        this.setState({timeElapsed: ((60*this.state.timeElapsed - 1)/60).toFixed(2)});  
+        this.setState({timeElapsed: ((this.state.timeElapsed - 1))});
         this.props.onTimeChange( this.state.timeElapsed );
       } else {
         var result = {totalscore: this.state.totalscore};
-			  this.props.onSubmitted( result );			
+			  this.props.onSubmitted( result );
       }
     },
     componentDidMount: function() {
@@ -32,11 +32,11 @@ var QuestionPaper = React.createClass({
 					);
 			}, this);
 			return(
-				<div>					
+				<div>
 					<table className="table table-striped">{questionAnswers}</table>
 					<div><input type="button" className="btn btn-primary" value="Submit" onClick={this.handleSubmitted}/></div>
 				</div>
-				
+
 			);
 		}
 	});
@@ -45,33 +45,33 @@ var QuestionPaper = React.createClass({
 		getInitialState: function() {
 			return {
 				correctAnswerRecorded: false,
-				negativeAnswerRecorded: false				
+				negativeAnswerRecorded: false
 			};
 		},
 		handleChange: function(event) {
 			var score = 0;
-			if( event.target.value == this.props.answer) {				
-				if( this.state.correctAnswerRecorded === false ) {					
+			if( event.target.value == this.props.answer) {
+				if( this.state.correctAnswerRecorded === false ) {
 					if( this.props.applyNegativeMarking === true && this.state.negativeAnswerRecorded === true ) {
 						score = 1 + this.props.marks;
 					} else {
 						score = this.props.marks;
 					}
-				}				
+				}
 				this.state.correctAnswerRecorded = true;
 				this.state.negativeAnswerRecorded = false;
-			} else {				
+			} else {
 				if( this.props.applyNegativeMarking === true && this.state.negativeAnswerRecorded === false ) {
 					if( this.state.correctAnswerRecorded === true ) {
 						score = -1 - this.props.marks;
 					} else {
-						score = -1;	
+						score = -1;
 					}
-					
+
 				} else {
 					if( this.state.correctAnswerRecorded === true ) {
 						score = -this.props.marks;
-					} 
+					}
 				}
 				this.state.negativeAnswerRecorded = true;
 				this.state.correctAnswerRecorded = false;
@@ -95,7 +95,7 @@ var QuestionPaper = React.createClass({
 		}
 	});
 
-	var Scorecard = React.createClass({		
+	var Scorecard = React.createClass({
 		render: function(){
 			var status = "Test not submitted!";
 			if( this.props.testSubmitted == true ) {
@@ -103,7 +103,7 @@ var QuestionPaper = React.createClass({
 					status = "Sorry, you could not pass the test. Try again later!"
 				} else {
 					status = "Congratulations!! You passed the test.";
-				}				
+				}
 			}
 			return(
 				<div className="list-group">
@@ -115,12 +115,12 @@ var QuestionPaper = React.createClass({
 			);
 		}
 	});
-	
+
 	var Stopwatch = React.createClass({
 	  render: function() {
 	    return (
 	        <div className="list-group">
-					<div className="list-group-item active">Time Left (In Minutes)</div>
+					<div className="list-group-item active">Time Left (In Seconds)</div>
 					<div className="list-group-item"><h1>{this.props.timeElapsed}</h1></div>
 				</div>
 	      );
@@ -137,13 +137,13 @@ var QuestionPaper = React.createClass({
 		handleStopwatch: function( timeElapsed ) {
 		  this.setState({timeElapsed: timeElapsed});
 		},
-		render: function(){						
+		render: function(){
 			var totalmarks = 0;
 			this.props.details.questions.map(function(question){
 				totalmarks += question.marks;
 			});
 			return(
-				<div>					
+				<div>
 					<h1>{this.props.details.name}</h1>
 					<hr className="divider"/>
 					<div>{this.props.details.description}</div>
@@ -155,7 +155,7 @@ var QuestionPaper = React.createClass({
 							 </td>
 							 <td className="col-md-3">
 							  <Stopwatch timeElapsed={this.state.timeElapsed} />
-							  <Scorecard score={this.state.totalscore} testSubmitted={this.state.testSubmitted} percentage={Math.round(this.state.totalscore*100/totalmarks)}/>					
+							  <Scorecard score={this.state.totalscore} testSubmitted={this.state.testSubmitted} percentage={Math.round(this.state.totalscore*100/totalmarks)}/>
 							</td>
 						</tr>
 					</table>
