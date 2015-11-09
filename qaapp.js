@@ -1,4 +1,4 @@
-var QuestionPaper = React.createClass({
+  var QuestionPaper = React.createClass({
 		getInitialState: function() {
 			return {totalscore : 0, timeElapsed: this.props.timeAllotted};
 		},
@@ -99,7 +99,7 @@ var QuestionPaper = React.createClass({
 		render: function(){
 			var status = "Test not submitted!";
 			if( this.props.testSubmitted == true ) {
-				if( this.props.percentage < 33 ) {
+				if( this.props.percentage < this.props.passRate ) {
 					status = "Sorry, you could not pass the test. Try again later!"
 				} else {
 					status = "Congratulations!! You passed the test.";
@@ -151,11 +151,11 @@ var QuestionPaper = React.createClass({
 						<tr>
 							<td className="col-md-9">
 							<QuestionPaper questions={this.props.details.questions} applyNegativeMarking={this.props.details.applyNegativeMarking}
-							 onSubmitted={this.handleChange} onTimeChange={this.handleStopwatch} timeAllotted={this.props.details.time}/>
+							 onSubmitted={this.handleChange} onTimeChange={this.handleStopwatch} timeAllotted={this.props.details.time} />
 							 </td>
 							 <td className="col-md-3">
 							  <Stopwatch timeElapsed={this.state.timeElapsed} />
-							  <Scorecard score={this.state.totalscore} testSubmitted={this.state.testSubmitted} percentage={Math.round(this.state.totalscore*100/totalmarks)}/>
+							  <Scorecard score={this.state.totalscore} testSubmitted={this.state.testSubmitted} percentage={Math.round(this.state.totalscore*100/totalmarks)} passRate={this.props.details.passCutoff}/>
 							</td>
 						</tr>
 					</table>
