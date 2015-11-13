@@ -163,3 +163,18 @@
 			);
 		}
 	});
+
+  var HomeButton = React.createClass({
+    getInitialState: function(){
+      this.setState({navigateTo: this.props.page});
+      return {navigateTo:this.props.page};
+    },
+    goHome: function (){
+      location.href=this.state.navigateTo;
+    },
+	  render: function() {
+	    return (
+	        <div><input type="button" className="btn btn-primary" value={this.props.text} onClick={this.goHome} /></div>
+	      );
+	  }
+	});
