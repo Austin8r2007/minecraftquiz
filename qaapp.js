@@ -1,3 +1,58 @@
+var test = {
+  name: "Minecraft Test",
+  description: "This is a Minecraft test, you will be timed come on minecraft",
+  passCutoff: 90,
+  applyNegativeMarking: false,
+  time: 60,
+  questions: [
+    {
+    no: "1",
+    qtext:"How tall is a enderman?",
+    options:[
+      {text:"Three"},
+      {text:"Five"},
+      {text:"Four"},
+      {text:"Eight"}
+    ],
+    ans:"Four",
+    marks: 1
+  },
+  {
+    no: "2",
+    qtext:"How many blocks is a nether portal?",
+    options:[
+      {text:"15"},
+      {text:"14"},
+      {text:"10"}
+    ],
+    ans:"10",
+    marks: 1
+  },
+  {
+    no: "3",
+    qtext:"What is the main character's name?",
+    options:[
+      {text:"Bob"},
+      {text:"Joe"},
+      {text:"Steve"},
+      {text:"Linda"}
+    ],
+    ans:"Steve",
+    marks: 1
+  },
+  {
+    no: "4",
+    qtext:"Are villages in the plains?",
+    options:[
+      {text:"yes"},
+      {text:"no"}
+    ],
+    ans:"yes",
+    marks: 1
+  },
+  ]
+};
+
   var QuestionPaper = React.createClass({
 		getInitialState: function() {
 			return {totalscore : 0, timeElapsed: this.props.timeAllotted};
